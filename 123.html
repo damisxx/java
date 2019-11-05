@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<HTML>
+	<HEAD>
+		<title>stoper</title>
+		<script>
+
+			var timerIsON="false";
+			var seconds=0;
+			var timer=0;
+			var minutes=0;
+			
+			function toogleTimer() {
+				timerIsON =!timerIsON ;
+				if(timerIsON){
+			    document.getElementById('startstop').innerHTML='Stop'; 
+				setTimeout('timerRun()', 1000);
+				} else 
+					document.getElementById('startstop').innerHTML='start'; 
+				console.log(timerIsON)
+				clearTimeout(timer);
+				
+			}
+			function timerRun(){
+				seconds++;
+				if(seconds==60){
+				seconds = 0;
+				minutes++;
+			}
+				formatTime();
+				document.getElementById('mdiv').innerHTML =  minutes + " : " + seconds;
+
+                // setTimeout("timerRun()", 1000);
+				timer = setTimeout("timerRun()", 1000);
+			}
+			function formatTime(){
+				if(seconds<10){
+				seconds = '0' + seconds;
+				}
+				if(minutes<10){
+				minutes = '0' + parseInt(minutes);
+				}
+			}
+			function resetTimer(){
+				timerIsOn = false;
+				clearTimeout(timer);
+				seconds = 0;
+				document.getElementById('mdiv').innerHTML = '00 : 00';
+				document.getElementById('startstop').innerHTML = 'Start';
+			}
+		</script>
+	</HEAD>
+	<BODY>
+		<div id="mdiv">00 : 00</div>
+		<button onclick="toogleTimer()"; onclick="timerRun()"; id="startstop">Start</button>
+		<button onclick="resetTimer()">Reset</button>
+
+
+	</BODY> 
+</HTML>
+
+
